@@ -21,9 +21,9 @@ public class RandomAccessFileTest {
         randomAccessFile.writeUTF("赵四");
         randomAccessFile.writeInt(18);
         randomAccessFile.writeUTF("刘能");
-        randomAccessFile.writeInt(38);
+        randomAccessFile.writeInt(28);
         randomAccessFile.writeUTF("广坤");
-        randomAccessFile.writeInt(58);
+        randomAccessFile.writeInt(38);
 
         // 移动指针位置为0
         randomAccessFile.seek(24);
@@ -32,9 +32,8 @@ public class RandomAccessFileTest {
         System.out.println(randomAccessFile.readUTF());
         System.out.println(randomAccessFile.readInt());
 
-        randomAccessFile.seek(12);
-        System.out.println(randomAccessFile.readUTF());
-        System.out.println(randomAccessFile.readInt());
+        //指针跳过指定的字节长度
+        randomAccessFile.skipBytes(12);
 
         randomAccessFile.seek(0);
         System.out.println(randomAccessFile.readUTF());
