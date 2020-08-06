@@ -24,7 +24,6 @@ public class FileInputTest {
             while ((b = fileInputStream.read()) != -1){
                 System.out.print((char) b);
             }
-            fileInputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
