@@ -14,7 +14,7 @@ public class RandomAccessFileTest {
 
     @Test
     public void wrideAndRead() throws IOException {
-        String name = "D:\\idea2018\\idea\\ideacode\\io\\emp.txt";
+        String name = "D:\\idea2018\\idea\\emp.txt";
         RandomAccessFile randomAccessFile = new RandomAccessFile(name,"rw");
 
         // 写
