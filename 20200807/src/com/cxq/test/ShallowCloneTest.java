@@ -21,8 +21,10 @@ public class ShallowCloneTest {
         System.out.println("sheepA's name is " + sheepA.getName());
         System.out.println("sheepA's birth is " + sheepA.getBirth());
 
+        //克隆出一个实例
         Sheep sheepB = sheepA.shallowClone(sheepA);
 
+        //判断两个实例是否为同一个实例对象
         System.out.println(sheepA == sheepB ? "sheepA与sheepB是同一只羊" : "sheepA与sheepB不是同一只羊");
         sheepB.setName("dolly");
         System.out.println("sheepB's name is " + sheepB.getName());
@@ -32,5 +34,4 @@ public class ShallowCloneTest {
         System.out.println("sheepA's birth is " + sheepA.getBirth());
         System.out.println("sheepB's birth is " + sheepB.getBirth());
     }
-
 }
