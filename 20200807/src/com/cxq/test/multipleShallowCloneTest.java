@@ -3,35 +3,35 @@ package com.cxq.test;
 import com.cxq.prototype.Sheep;
 import org.junit.Test;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 /**
  * @author CXQ
  * @version 1.0
  */
-public class ShallowCloneTest {
+public class multipleShallowCloneTest {
 
     @Test
-    public void shallowclone(){
+    public void multipleShallowClone(){
         Date birth = new Date();
         Sheep sheepA = new Sheep();
-        sheepA.setName("goatKing");
+        sheepA.setName("dorset");
         sheepA.setBirth(birth);
         System.out.println("sheepA's name is " + sheepA.getName());
         System.out.println("sheepA's birth is " + sheepA.getBirth());
 
         //克隆出一个实例
-        Sheep sheepB = sheepA.shallowClone(sheepA);
+        Sheep sheepB = sheepA.multipleShallowClone(sheepA);
 
-        //判断两个实例是否为同一个实例对象
-        System.out.println(sheepA == sheepB ? "sheepA与sheepB是同一只羊" : "sheepA与sheepB不是同一只羊");
+        System.out.println(sheepA == sheepB ? "sheepA and sheepB is a sheep" : "sheepA and sheepB is different sheep");
 
         sheepB.setName("dolly");
         System.out.println("sheepB's name is " + sheepB.getName());
         System.out.println("sheepB's birth is " + sheepB.getBirth());
 
-        birth.setTime(555555L);
+        birth.setTime(55555L);
+
+        System.out.println("Test whether the birthdays of the two sheep are the same：");
         System.out.println("sheepA's birth is " + sheepA.getBirth());
         System.out.println("sheepB's birth is " + sheepB.getBirth());
     }
