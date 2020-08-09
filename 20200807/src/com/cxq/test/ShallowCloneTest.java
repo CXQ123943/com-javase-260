@@ -3,7 +3,6 @@ package com.cxq.test;
 import com.cxq.prototype.Sheep;
 import org.junit.Test;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 /**

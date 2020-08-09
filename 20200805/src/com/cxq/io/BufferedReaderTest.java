@@ -15,6 +15,7 @@ public class BufferedReaderTest {
 
     @Test
     public void bufferedReader(){
+        // System.in is typeof InputStream
         String filePath = "D:" + File.separator + "idea2018" + File.separator + "idea"+ File.separator + "HelloWorld.java";
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))){
             String str = "";
