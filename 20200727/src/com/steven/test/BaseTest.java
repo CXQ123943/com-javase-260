@@ -9,6 +9,7 @@ import org.junit.Test;
  * @version 1.0
  */
 public class BaseTest {
+
     @Test
     public void baseTest(){
         SonBaseDemo sonBaseDemo = new SonBaseDemo();
