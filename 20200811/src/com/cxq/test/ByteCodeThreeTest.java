@@ -4,7 +4,7 @@ package com.cxq.test;
  * @author CXQ
  * @version 1.0
  */
-public class ByteCodethreeTest {
+public class ByteCodeThreeTest {
     public static void main(String[] args) {
         int a = 2;
         int b = 3;
