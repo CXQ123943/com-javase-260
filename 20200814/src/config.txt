@@ -1,0 +1,2 @@
+className = com.cxq.test.PropertiesTest$Teacher
+methodName = teacherInfo
