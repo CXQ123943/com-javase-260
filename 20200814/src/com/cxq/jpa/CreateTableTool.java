@@ -35,13 +35,15 @@ public class CreateTableTool {
     }
 
     private String getTableName() {
-        return instance.getDeclaredAnnotation(Table.class).value();
+        Table declaredAnnotation = instance.getDeclaredAnnotation(Table.class);
+        return declaredAnnotation.value();
+
     }
 
     private String getColumnsFormatString() {
         StringBuilder stringBuilder = new StringBuilder();
         Field[] declaredFields = instance.getDeclaredFields();
-        for (Field e: declaredFields){
+        for (Field e: declaredFields) {
             Column annotation = e.getAnnotation(Column.class);
             if (annotation != null) {
                 String name = annotation.name();
