@@ -31,11 +31,11 @@ public class SingleLinkedListTest {
                 this.data = data;
             }
 
-            //重写了节点类的toString（）方法（下面重写了没必要）
-            /*@Override
+            //重写了节点类的toString（）方法
+            @Override
             public String toString() {
                 return "[" + data + "-> " + (next == null ? "null" : next.data) + "]";
-            }*/
+            }
         }
 
         @Override
@@ -77,23 +77,24 @@ public class SingleLinkedListTest {
 
         private SingleLinkedListDemo<E> add(E data, int pos) {
             // 创建一个新节点，追加到链表的指定位置
-            if (pos < 0) {
-                System.out.println("插入位置小于0不被允许");
-            }else if (pos == 0) {
-                resetHead(data);
-            }else {
-                Node<E> newNode = new Node<>(data);
-                Node<E> currentNode = this.head;
-                for (int i = 0; i < pos - 1; i++) {
-                    if (currentNode.next == null) {
-                        add(data);
-                        return this;
-                    }
-                    currentNode = currentNode.next;
-                }
-                newNode.next = currentNode.next;
-                currentNode.next = newNode;
+            if (pos <= 0) {
+                this.resetHead(data);
+                return this;
             }
+
+            Node<E> newNode = new Node<>(data);
+            Node<E> currentNode = this.head;
+            Node<E> preNode = this.head;
+            for (int i = 0; i < pos; i++) {
+                if (currentNode.next == null) {
+                    add(data);
+                    return this;
+                }
+                preNode = currentNode;
+                currentNode = currentNode.next;
+            }
+            preNode.next = newNode;
+            newNode.next = currentNode;
             return this;
         }
 
