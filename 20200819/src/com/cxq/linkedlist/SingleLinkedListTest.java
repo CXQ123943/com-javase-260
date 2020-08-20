@@ -1,6 +1,9 @@
 package com.cxq.linkedlist;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import java.util.SimpleTimeZone;
 
 /**
  * @author CXQ
@@ -12,12 +15,10 @@ public class SingleLinkedListTest {
 
         //设计一个head(链表头)，一个tail（链表尾），一个size（链表长度）
         private Node<E> head;
-        private Node<E> tail;
 
         //构造方法 链表的创建
         private SingleLinkedListDemo(E headData) {
             this.head = new Node<>(headData);
-            this.tail = head;
         }
 
         //创建了一个节点类
@@ -54,24 +55,126 @@ public class SingleLinkedListTest {
             return stringBuilder.toString();
         }
 
-        private void addHead(E data) {
+        private SingleLinkedListDemo resetHead(E data) {
             //创建了一个新的节点，并重新设计新节点的data和next
             Node<E> newNode = new Node<>(data);
             newNode.next = this.head;
             //新的节点头就是newHead  重新定义head属性
             this.head = newNode;
+            return this;
+        }
+
+        private SingleLinkedListDemo<E> add(E data) {
+            // 创建一个新节点，追加到链表的末端
+            Node<E> backup = head;
+            while (backup.next != null) {
+                backup = backup.next;
+            }
+            backup.next = new Node<E>(data);
+            return this;
+        }
+
+
+        private SingleLinkedListDemo<E> add(E data, int pos) {
+            // 创建一个新节点，追加到链表的指定位置
+            if (pos < 0) {
+                System.out.println("插入位置小于0不被允许");
+            }else if (pos == 0) {
+                resetHead(data);
+            }else {
+                Node<E> newNode = new Node<>(data);
+                Node<E> currentNode = this.head;
+                for (int i = 0; i < pos - 1; i++) {
+                    if (currentNode.next == null) {
+                        add(data);
+                        return this;
+                    }
+                    currentNode = currentNode.next;
+                }
+                newNode.next = currentNode.next;
+                currentNode.next = newNode;
+            }
+            return this;
+        }
+
+        private Node<E> get(E data) {
+            // 获取指定data内容的Node节点
+            Node<E> currentNode = this.head;
+            Node<E> result = null;
+            while (currentNode != null) {
+                if (data.equals(currentNode.data)) {
+                    result = currentNode;
+                    break;
+                }
+                currentNode = currentNode.next;
+            }
+            return result;
+        }
+
+        private SingleLinkedListDemo<E> delete(E data) {
+            // 删除指定data内容的Node节点（头节点忽略）
+            Node<E> currentNode = this.head;
+            Node<E> PreNode = this.head;
+            while (currentNode != null) {
+                if (data.equals(currentNode.data)) {
+                    PreNode.next = currentNode.next;
+                    break;
+                }
+                PreNode = currentNode;
+                currentNode = currentNode.next;
+            }
+            return this;
         }
     }
 
+    private SingleLinkedListDemo<String> linkList;
 
-    private SingleLinkedListDemo<String> linkList = new SingleLinkedListDemo<>("a");
+    @Before
+    public void before() {
+        linkList = new SingleLinkedListDemo<>("1111");
+    }
 
     @Test
     public void addHead() {
+        System.out.println(linkList.resetHead("2222"));
+        System.out.println(linkList.resetHead("3333"));
+        System.out.println("此时的链表为：" + linkList);
+    }
+
+    @Test
+    public void add() {
         System.out.println(linkList);
-        linkList.addHead("b");
+        System.out.println(linkList.add("2222"));
+        System.out.println(linkList.add("3333"));
+        System.out.println(linkList.add("4444"));
+    }
+
+    @Test
+    public void addWithPos() {
         System.out.println(linkList);
-        linkList.addHead("c");
+        System.out.println(linkList.add("2222", 0));
+        System.out.println(linkList.add("3333", 9));
+        System.out.println(linkList.add("4444", 1));
+        System.out.println(linkList.add("5555", 2));
+    }
+
+    @Test
+    public void get() {
         System.out.println(linkList);
+        System.out.println(linkList.add("2222", 9));
+        System.out.println(linkList.add("3333", 0));
+        System.out.println("node: " + linkList.get("2222"));
+        System.out.println("node: " + linkList.get("3333"));
+        System.out.println("node: " + linkList.get("4444"));
+    }
+
+    @Test
+    public void delete() {
+        System.out.println(linkList);
+        System.out.println(linkList.add("2222"));
+        System.out.println(linkList.add("3333"));
+        System.out.println(linkList.add("4444"));
+        System.out.println(linkList.delete("2222"));
+        System.out.println(linkList.delete("5555"));
     }
 }
