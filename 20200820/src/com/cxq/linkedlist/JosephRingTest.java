@@ -18,7 +18,6 @@ public class JosephRingTest {
             private Node(E data) {
                 this.data = data;
             }
-
         }
 
         private Node<E> head;
