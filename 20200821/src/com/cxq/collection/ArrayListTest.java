@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * @author CXQ
  * @version 1.0
+ * <p>
+ *     ArrayList的增删改查操作
  */
 public class ArrayListTest {
     private List<String> list;
