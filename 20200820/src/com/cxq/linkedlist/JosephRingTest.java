@@ -1,6 +1,5 @@
 package com.cxq.linkedlist;
 
-import com.sun.glass.ui.Size;
 import org.junit.Before;
 import org.junit.Test;
 
