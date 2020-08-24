@@ -135,7 +135,7 @@ public class ComparatorTest {
     public void sortByComparable() {
         TreeSet<Student> treeSet = new TreeSet<>();
         Student studentA = new Student("a", 50);
-        Student studentB = new Student("c", 30);
+        Student studentB = new Student("c", 60);
         Student studentC = new Student("b", 30);
         treeSet.add(studentA);
         treeSet.add(studentB);
