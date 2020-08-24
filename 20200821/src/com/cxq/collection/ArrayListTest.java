@@ -5,12 +5,13 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * @author CXQ
  * @version 1.0
  * <p>
- *     ArrayList的增删改查操作
+ * ArrayList的增删改查操作
  */
 public class ArrayListTest {
     private List<String> list;
@@ -22,7 +23,7 @@ public class ArrayListTest {
 
     /**
      * ArrayList的增操作
-     * */
+     */
     @Test
     public void add() {
         list.add("China");
@@ -38,12 +39,11 @@ public class ArrayListTest {
         newList.add("Japan");
         newList.add("Korea");
         list.addAll(1, newList);
-        System.out.println(list);
     }
 
     /**
      * ArrayList的删操作
-     * */
+     */
     @Test
     public void delete() {
         list.add("China");
@@ -67,7 +67,7 @@ public class ArrayListTest {
 
     /**
      * ArrayList的改操作
-     * */
+     */
     @Test
     public void update() {
         list.add("China");
@@ -82,7 +82,7 @@ public class ArrayListTest {
 
     /**
      * ArrayList的查操作
-     * */
+     */
     @Test
     public void retrieve() {
         list.add("China");
@@ -108,4 +108,53 @@ public class ArrayListTest {
         System.out.println(list.size());
         System.out.println(list.toArray()[0]);
     }
+
+    @Test
+    public void iteratorByFor() {
+        add();
+        for (int i = 0, j = list.size(); i < j; i++) {
+            System.out.print(list.get(i) + "\0");
+        }
+    }
+
+    @Test
+    public void iteratorByForeach() {
+        add();
+        add();
+        for (String e : list) {
+            System.out.print(e + "\0");
+        }
+    }
+
+    @Test
+    public void iterator() {
+        add();
+        ListIterator<String> iterator = list.listIterator(0);
+        while (iterator.hasNext()) {
+            String e = iterator.next();
+
+            if ("China".equals(e)) {
+                iterator.set("CHINA");
+            }
+            if ("UK".equals(e)) {
+                iterator.remove();
+            }
+            // 这里打印的是set()和remove()的原值，但是list中的内容已经发生了改变
+            System.out.print(e + " ");
+        }
+        System.out.println();
+        System.out.println(list);
+    }
+
+    @Test
+    public void reverseiterator() {
+        add();
+        ListIterator<String> iterator = list.listIterator(list.size());
+        while (iterator.hasPrevious()) {
+            String e = iterator.previous();
+            // 这里打印的是set()和remove()的原值，但是list中的内容已经发生了改变
+            System.out.print(e + " ");
+        }
+    }
+
 }
