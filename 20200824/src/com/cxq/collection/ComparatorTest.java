@@ -26,6 +26,16 @@ public class ComparatorTest {
             return "Person [name=" + name + ", age=" + age + "]";
         }
 
+        @Override
+        public int hashCode() {
+            return super.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj);
+        }
+
         String getName() {
             return name;
         }
@@ -45,7 +55,7 @@ public class ComparatorTest {
         public int compare(Person personA, Person personB) {
             int result = personA.getName().compareTo(personB.getName());
             if (result == 0) {
-                result = new Integer(personA.getAge()).compareTo(personB.getAge());
+                result = Integer.compare(personA.getAge(), personB.getAge());
             }
             return result;
         }
