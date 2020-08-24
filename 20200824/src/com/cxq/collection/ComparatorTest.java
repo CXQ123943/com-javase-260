@@ -3,6 +3,7 @@ package com.cxq.collection;
 import org.junit.Test;
 
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,6 +12,20 @@ import java.util.TreeSet;
  * @version 1.0
  */
 public class ComparatorTest {
+
+    /**
+     * 实现Comparator接口 Comparator - compare
+     * */
+    class CustomComparator implements Comparator<Person> {
+        @Override
+        public int compare(Person personA, Person personB) {
+            int result = personA.getName().compareTo(personB.getName());
+            if (result == 0) {
+                result = Integer.compare(personA.getAge(), personB.getAge());
+            }
+            return result;
+        }
+    }
 
     class Person {
         private String name;
@@ -52,17 +67,6 @@ public class ComparatorTest {
         }
     }
 
-    class CustomComparator implements Comparator<Person> {
-        @Override
-        public int compare(Person personA, Person personB) {
-            int result = personA.getName().compareTo(personB.getName());
-            if (result == 0) {
-                result = Integer.compare(personA.getAge(), personB.getAge());
-            }
-            return result;
-        }
-    }
-
     @Test
     public void sortByComparator() {
         Set<Person> set = new TreeSet<>(new CustomComparator());
@@ -71,5 +75,71 @@ public class ComparatorTest {
         set.add(new Person("a", 9));
         set.add(new Person("a", 9));
         System.out.println(set);
+    }
+
+
+    /**
+     * 实现Comparable接口  Comparable - compareTo
+     * */
+    private static class Student implements Comparable<Student> {
+        private String name;
+        private int age;
+
+        Student(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public int compareTo(Student student) {
+            String prevName = this.name;
+            String nextName = student.getName();
+            int prevAge = this.age;
+            int nextAge = student.getAge();
+            return prevAge == nextAge ? nextName.compareTo(prevName) : nextAge - prevAge;
+        }
+
+        @Override
+        public String toString() {
+            return "Student [name=" + name + ", age=" + age + "]";
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Student student = (Student) o;
+            return age == student.age &&
+                    Objects.equals(name, student.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, age);
+        }
+
+        String getName() {
+            return name;
+        }
+
+        int getAge() {
+            return age;
+        }
+    }
+
+    @Test
+    public void sortByComparable() {
+        TreeSet<Student> treeSet = new TreeSet<>();
+        Student studentA = new Student("a", 50);
+        Student studentB = new Student("c", 30);
+        Student studentC = new Student("b", 30);
+        treeSet.add(studentA);
+        treeSet.add(studentB);
+        treeSet.add(studentC);
+        System.out.println(treeSet);
     }
 }
