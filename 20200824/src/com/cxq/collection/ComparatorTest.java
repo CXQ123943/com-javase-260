@@ -26,11 +26,13 @@ public class ComparatorTest {
             return "Person [name=" + name + ", age=" + age + "]";
         }
 
+        //可重写可重写：阿里规范建议的
         @Override
         public int hashCode() {
             return super.hashCode();
         }
 
+        //可重写可重写：阿里规范建议的
         @Override
         public boolean equals(Object obj) {
             return super.equals(obj);
