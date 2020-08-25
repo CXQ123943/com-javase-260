@@ -39,7 +39,7 @@ public class ClassTest {
 
     @Test
     public void test3() {
-        int temp = 100000;
+        int temp = 10000;
         ArrayList<Integer> arr = new ArrayList<>();
         long first01 = System.currentTimeMillis();
         for (int i = 0; i < temp; i++) {
