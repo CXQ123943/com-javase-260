@@ -25,14 +25,15 @@ public class FileChannelTest {
         FileChannel fileOutputStreamChannel = fileOutputStream.getChannel();
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         while (true) {
-//            byteBuffer.clear();
+            byteBuffer.clear();
             int read = fileInputStreamChannel.read(byteBuffer);
             if (read == -1) {
                 break;
             }
+            byteBuffer.flip();
+            fileOutputStreamChannel.write(byteBuffer);
         }
-        byteBuffer.flip();
-        fileOutputStreamChannel.write(byteBuffer);
+
 
         fileInputStreamChannel.close();
         fileOutputStreamChannel.close();
