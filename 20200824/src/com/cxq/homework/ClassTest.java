@@ -7,7 +7,7 @@ import java.util.*;
 public class ClassTest {
 
     @Test
-    public void main() {
+    public void test01() {
 
         Map<String, Object> map = new HashMap<>();
         map.put("a", "1");
@@ -22,7 +22,7 @@ public class ClassTest {
     }
 
     @Test
-    public void test2() {
+    public void test02() {
         HashMap<Character, Integer> hashMap = new HashMap<>();
         char[] chars = "aabawebaaabbeecc".toCharArray();
         Integer value = 0;
@@ -38,7 +38,7 @@ public class ClassTest {
     }
 
     @Test
-    public void test3() {
+    public void test03() {
         int temp = 10000;
         ArrayList<Integer> arr = new ArrayList<>();
         long first01 = System.currentTimeMillis();
@@ -55,5 +55,22 @@ public class ClassTest {
         }
         long end02 = System.currentTimeMillis();
         System.out.println(end02 - first02);
+    }
+
+    @Test
+    public void test04() {
+        TreeSet<Object> treeSet = new TreeSet<>(new Comparator<Object>() {
+            @Override
+            public int compare(Object o1,Object o2) {
+                return 1;
+            }
+        });
+
+        treeSet.add(1);
+        treeSet.add(4);
+        treeSet.add(3);
+        treeSet.add(2);
+
+        System.out.println(treeSet);
     }
 }
