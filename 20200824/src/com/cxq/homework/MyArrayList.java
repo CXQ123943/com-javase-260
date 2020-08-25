@@ -1,5 +1,7 @@
 package com.cxq.homework;
 
+import org.junit.Test;
+
 /**
  * @author CXQ
  * @version 1.0
@@ -41,6 +43,7 @@ public class MyArrayList<T> {
     private int total = 0;
     private T[] arr = null;
 
+    @SuppressWarnings("unchecked")
     private MyArrayList(int arrayInitSize) {
         arr = (T[]) new Object[arrayInitSize];
     }
@@ -49,12 +52,13 @@ public class MyArrayList<T> {
         this(10);
     }
 
+    @SuppressWarnings("unchecked")
     private void add(T t) {
         if (total >= arr.length) {
-            T[] arr_temp = (T[]) new Object[arr.length + 10];
-            System.arraycopy(arr, 0, arr_temp, 0, arr.length);
-            arr_temp[total] = t;
-            arr = arr_temp;
+            T[] newArr = (T[]) new Object[arr.length + 10];
+            System.arraycopy(arr, 0, newArr, 0, arr.length);
+            newArr[total] = t;
+            arr = newArr;
         } else {
             arr[total] = t;
         }
@@ -69,13 +73,14 @@ public class MyArrayList<T> {
         }
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void main() {
         MyArrayList<Student> list = new MyArrayList<Student>();
         for (int i = 0; i < 100; i++) {
             list.add(new Student("张三"+ "\0" + i , "" + i));
         }
         System.out.println(list.get(34));
         System.out.println(list.get(99));
-        //System.out.println(list.get(100));
+        System.out.println(list.get(100));
     }
 }
