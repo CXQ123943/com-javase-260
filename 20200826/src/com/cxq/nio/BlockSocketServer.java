@@ -25,7 +25,7 @@ public class BlockSocketServer {
         SocketChannel accept = serverSocketChannel.accept();
         //创建一个缓冲区
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-        //接收的数据写到缓冲区里
+        //接收的数据读到缓冲区里
         while (accept.read(byteBuffer) != -1) {
             //指针pos复位（归0）
             byteBuffer.flip();

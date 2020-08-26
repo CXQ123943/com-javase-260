@@ -27,6 +27,7 @@ public class BlockSocketClient {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String str = "";
         while ((str = bufferedReader.readLine()) != null) {
+            //向缓冲区中写入需要客户端通道接收的数据
             byteBuffer.put(("=> " + str).getBytes());
             byteBuffer.flip();
             //通道再从缓冲区写出数据
