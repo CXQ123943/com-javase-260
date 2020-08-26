@@ -15,7 +15,7 @@ public class BlockSocketServer {
         int port = 9999;
         //开启一个ServerSocketChannel通道
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        //创建一个socket地址：使用“new InetSocketAddress()”来构造
+        //创建一个socket地址链接：使用“new InetSocketAddress()”来构造
         InetSocketAddress inetSocketAddress = new InetSocketAddress(port);
         //ServerSocketChannel通道绑定一个socket地址
         serverSocketChannel.bind(inetSocketAddress);
