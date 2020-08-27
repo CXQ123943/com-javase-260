@@ -29,7 +29,7 @@ public class ForegroundThreadTest {
             @Override
             public void run() {
                 for (int i = 0, j = 10; i < j; i++) {
-                    System.out.print(i);
+                    System.out.println(i);
                 }
             }
         }.start();
