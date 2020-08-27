@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class ForegroundThreadTest {
 
-    private static class CustomThread extends Thread {
+    private static class SubThread extends Thread {
         @Override
         public void run() {
             for (int i = 0, j = 10; i < j; i++) {
@@ -19,7 +19,7 @@ public class ForegroundThreadTest {
 
     @Test
     public void buildByThread() {
-        CustomThread customThread = new CustomThread();
+        SubThread customThread = new SubThread();
         customThread.start();
     }
 
@@ -33,5 +33,40 @@ public class ForegroundThreadTest {
                 }
             }
         }.start();
+    }
+
+    private static class SubRunnable extends Thread {
+        @Override
+        public void run() {
+            for (int i = 0, j = 10; i < j; i++) {
+                System.out.print(i);
+            }
+        }
+    }
+
+    @Test
+    public void buildByRunnable() {
+        new Thread(new SubRunnable()).start();
+    }
+
+    @Test
+    public void buildByInnerRunnable() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0, j = 10; i < j; i++) {
+                    System.out.print(i);
+                }
+            }
+        }).start();
+    }
+
+    @Test
+    public void buildByLambda() {
+        new Thread(() -> {
+            for (int i = 0, j = 10; i < j; i++) {
+                System.out.print(i);
+            }
+        }).start();
     }
 }
