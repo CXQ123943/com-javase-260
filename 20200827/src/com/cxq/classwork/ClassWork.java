@@ -16,7 +16,7 @@ public class ClassWork {
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.put(str.getBytes());
         byteBuffer.flip();
-        byteBuffer.position(2).mark();
+        byteBuffer.position(3).mark();
         System.out.print((char) byteBuffer.get());
         System.out.print((char) byteBuffer.get());
         byteBuffer.reset();
