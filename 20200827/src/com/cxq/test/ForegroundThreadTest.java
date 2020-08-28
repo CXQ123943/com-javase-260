@@ -25,14 +25,11 @@ public class ForegroundThreadTest {
 
     @Test
     public void buildByInnerThread() {
-        new Thread() {
-            @Override
-            public void run() {
-                for (int i = 0, j = 10; i < j; i++) {
-                    System.out.println(i);
-                }
+        new Thread(() -> {
+            for (int i = 0, j = 10; i < j; i++) {
+                System.out.println(i);
             }
-        }.start();
+        }).start();
     }
 
     private static class SubRunnable extends Thread {
