@@ -8,7 +8,7 @@ import org.junit.Test;
  * @version 1.0
  */
 public class OrderReorderingTest {
-    private volatile int x = 0, y = 0, a = 0, b = 0;
+    private /*volatile*/ int x = 0, y = 0, a = 0, b = 0;
 
     @SneakyThrows
     @Test
