@@ -32,7 +32,7 @@ public class ForegroundThreadTest {
         }).start();
     }
 
-    private static class SubRunnable extends Thread {
+    private static class SubRunnable implements Runnable {
         @Override
         public void run() {
             for (int i = 0, j = 10; i < j; i++) {
