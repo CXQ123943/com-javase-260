@@ -19,7 +19,7 @@ public class TicketSellTest {
         @Override
         public void run() {
             while (true) {
-                TimeUnit.MILLISECONDS.sleep(300L);
+                TimeUnit.MILLISECONDS.sleep(200L);
                 sellTicket();
             }
         }
