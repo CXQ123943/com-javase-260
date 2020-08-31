@@ -9,13 +9,13 @@ import org.junit.Test;
 public class ReentryTest {
 
     private synchronized void methodA() {
-        System.out.println("methodA()...");
+        System.out.println("methodA()");
         // 调用methodB时，发现是同一线程，允许重入
         methodB();
     }
 
     private synchronized void methodB() {
-        System.out.println("methodB()...");
+        System.out.println("methodB()");
     }
 
     @Test
