@@ -21,7 +21,7 @@ public class LockUpgradeTest {
         System.out.println(ClassLayout.parseInstance(obj).toPrintable());
 
         synchronized (obj) {
-            // 00000(101): non-anonymous biased lock, and thread-recorded is main thread
+            // 00000(101): non-anonymous iased lock, and thread-recorded is main thread
             System.out.println(ClassLayout.parseInstance(obj).toPrintable());
         }
     }
@@ -39,16 +39,14 @@ public class LockUpgradeTest {
         }
     }
 
-    private static class OsLockDemo implements Runnable {
+    @Test
+    public void osLock() throws InterruptedException {
 
-        private final Object obj;
+        Object obj = new Object();
+        // 00000001 => 001: no lock
+        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
 
-        private OsLockDemo(Object obj) {
-            this.obj = obj;
-        }
-
-        @Override
-        public void run() {
+        Thread threadA = new Thread(()->{
             synchronized (obj) {
                 try {
                     obj.wait();
@@ -57,22 +55,23 @@ public class LockUpgradeTest {
                     e.printStackTrace();
                 }
             }
-        }
-    }
+        });
+        threadA.start();
 
-    @Test
-    public void osLock() throws InterruptedException {
+        Thread threadB = new Thread(()->{
+            synchronized (obj) {
+                try {
+                    TimeUnit.SECONDS.sleep(1L);
+                    obj.notify();
+                    System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        threadB.start();
 
-        Object obj = new Object();
-        // 00000001 => 001: no lock
-        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
-
-        OsLockDemo osLockDemo = new OsLockDemo(obj);
-        Thread thread = new Thread(osLockDemo);
-        thread.start();
-
-        TimeUnit.SECONDS.sleep(5L);
-        thread.notify();
-        System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+        threadA.join();
+        threadB.join();
     }
 }
