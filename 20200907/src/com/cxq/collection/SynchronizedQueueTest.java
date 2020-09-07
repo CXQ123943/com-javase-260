@@ -12,7 +12,7 @@ import java.util.concurrent.*;
  * @author CXQ
  * @version 1.0
  */
-public class BlockQueueTest {
+public class SynchronizedQueueTest {
 
     @Test
     public void concurrentLinkedQueue() {
@@ -122,6 +122,22 @@ public class BlockQueueTest {
         for (int i = 0, j = list.size(); i < j; i++) {
             System.out.println(list.take());
         }
+    }
+
+    @SneakyThrows
+    @Test
+    public void synchronousQueue() {
+        SynchronousQueue<String> queue = new SynchronousQueue<>();
+        new Thread(() -> {
+            try {
+                System.out.println(queue.take());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        TimeUnit.SECONDS.sleep(2L);
+        queue.put("zhao-si");
+        System.out.println("size: " + queue.size());
     }
 
     @SneakyThrows
