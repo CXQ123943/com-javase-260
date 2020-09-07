@@ -2,7 +2,11 @@ package com.cxq.collection;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author CXQ
@@ -25,5 +29,20 @@ public class SynchronizedListTest {
         vector.removeElementAt(1);
         System.out.println(vector.remove(0));
         vector.clear();
+    }
+
+    @Test
+    public void synchronizedList() {
+        List<String> arrayList = new ArrayList<>();
+        List<String> list = Collections.synchronizedList(arrayList);
+        list.add("赵四");
+        System.out.println(list.get(0));
+    }
+
+    @Test
+    public void copyOnWriteArrayList() {
+        List<String> list = new CopyOnWriteArrayList<>();
+        list.add("zhao-si");
+        System.out.println(list.get(0));
     }
 }
