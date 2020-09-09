@@ -42,6 +42,7 @@ public class RejectionStrategyTest {
             threadPool.execute(new MyTask(i));
         }
 
+
         System.out.println("queue:" + threadPool.getQueue());
         threadPool.execute(new MyTask(100));
         System.out.println("queue:" + threadPool.getQueue());
