@@ -19,7 +19,6 @@ public class ConstructorTest {
         public Demo() {
             System.out.println("public + ()：");
         }
-
         public Demo(String str) {
             System.out.println("public + (String)：" + str);
         }
