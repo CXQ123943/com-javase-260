@@ -4,7 +4,7 @@ import org.junit.Test;
 
 /**
  * @author StevenChen
- * @version 1.0
+ * @version 2.0
  */
 public class NeicunTest {
 
